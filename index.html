@@ -3,162 +3,420 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dr. Dheeraj Bharti | Robotic Perception and Georeferenced Intelligence</title>
-  <meta name="description" content="Academic and lab website of Dr. Dheeraj Bharti: robotic perception, SLAM, sensor fusion, geospatial AI, embedded vision, agriculture and mining robotics." />
-  <meta property="og:title" content="Dr. Dheeraj Bharti | Robotic Perception and Georeferenced Intelligence" />
-  <meta property="og:description" content="Computer vision, SLAM, GNSS-fusion, embedded AI, and field robotics for farms, mines, roads, and industrial environments." />
+  <title>Dr. Dheeraj Bharti | Computer Vision and Robotics</title>
+  <meta name="description" content="Dr. Dheeraj Bharti — Computer Vision, Robotics, SLAM, Sensor Fusion, Embedded AI, Agriculture and Mining Robotics." />
+  <meta property="og:title" content="Dr. Dheeraj Bharti | Computer Vision and Robotics" />
+  <meta property="og:description" content="Computer vision, robotic perception, SLAM, sensor fusion, embedded AI, agriculture and mining robotics." />
   <meta property="og:type" content="website" />
-  <link rel="icon" href="assets/img/logo.svg" />
-  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --light: #e2e8f0;
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+      --chip: #eff6ff;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(37, 99, 235, 0.12), transparent 34rem),
+        radial-gradient(circle at 88% 12%, rgba(14, 165, 233, 0.10), transparent 30rem),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-dark); text-decoration: underline; }
+
+    .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(248, 250, 252, 0.86);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: linear-gradient(135deg, #1d4ed8, #0891b2);
+      box-shadow: 0 12px 24px rgba(37, 99, 235, 0.24);
+      font-size: 0.9rem;
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: 0;
+      margin-top: -0.15rem;
+    }
+
+    .nav-links { display: flex; align-items: center; gap: 1.25rem; font-size: 0.95rem; }
+    .nav-links a { color: var(--muted); font-weight: 650; }
+    .nav-links a:hover { color: var(--accent); text-decoration: none; }
+
+    .hero { padding: 92px 0 54px; }
+    .hero-grid { display: grid; grid-template-columns: 1.35fr 0.65fr; gap: 2rem; align-items: center; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 0.86rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+    }
+
+    h1, h2, h3 { line-height: 1.12; margin: 0 0 0.85rem; letter-spacing: -0.035em; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.15rem); max-width: 850px; }
+    h2 { font-size: clamp(1.8rem, 3vw, 2.65rem); }
+    h3 { font-size: 1.16rem; }
+    p { margin: 0 0 1rem; }
+    .lead { font-size: clamp(1.08rem, 2vw, 1.28rem); color: var(--muted); max-width: 820px; }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0.72rem 1rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .button:hover { text-decoration: none; }
+    .button.primary { background: var(--accent); color: #fff; box-shadow: 0 14px 25px rgba(37, 99, 235, 0.20); }
+    .button.primary:hover { background: var(--accent-dark); color: #fff; }
+    .button.secondary { background: #fff; color: var(--text); border-color: rgba(148, 163, 184, 0.42); }
+    .button.secondary:hover { border-color: rgba(37, 99, 235, 0.5); color: var(--accent-dark); }
+
+    .profile-card {
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      border-radius: var(--radius);
+      padding: 1.35rem;
+      box-shadow: var(--shadow);
+    }
+
+    .profile-photo {
+      width: 112px;
+      height: 112px;
+      border-radius: 32px;
+      background: linear-gradient(135deg, #1d4ed8, #0891b2);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 2.15rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      letter-spacing: -0.05em;
+    }
+
+    .profile-card ul { padding: 0; margin: 1rem 0 0; list-style: none; }
+    .profile-card li { padding: 0.55rem 0; border-top: 1px solid rgba(148, 163, 184, 0.24); color: var(--muted); }
+    .profile-card strong { color: var(--text); }
+
+    section { padding: 58px 0; }
+    .section-head { max-width: 860px; margin-bottom: 1.5rem; }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid rgba(148, 163, 184, 0.26);
+      border-radius: var(--radius);
+      padding: 1.3rem;
+      box-shadow: 0 12px 35px rgba(15, 23, 42, 0.045);
+    }
+    .card.highlight { border-color: rgba(37, 99, 235, 0.34); background: linear-gradient(180deg, #ffffff, #f8fbff); }
+    .card p, .card li { color: var(--muted); }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1rem; }
+    .chip {
+      display: inline-flex;
+      border: 1px solid rgba(37, 99, 235, 0.12);
+      background: var(--chip);
+      color: #1e40af;
+      border-radius: 999px;
+      padding: 0.38rem 0.7rem;
+      font-weight: 750;
+      font-size: 0.86rem;
+    }
+
+    .list { padding-left: 1.1rem; margin: 0; }
+    .list li { margin: 0.45rem 0; }
+
+    .link-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.85rem; }
+    .link-card {
+      display: block;
+      background: #fff;
+      border: 1px solid rgba(148, 163, 184, 0.32);
+      border-radius: 18px;
+      padding: 1rem;
+      color: var(--text);
+      min-height: 104px;
+    }
+    .link-card:hover { transform: translateY(-2px); box-shadow: 0 16px 30px rgba(15, 23, 42, 0.08); text-decoration: none; border-color: rgba(37, 99, 235, 0.48); }
+    .link-card strong { display: block; margin-bottom: 0.35rem; }
+    .link-card span { color: var(--muted); font-size: 0.92rem; }
+
+    .pub-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: #0f172a;
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 1.35rem;
+    }
+    .pub-note p { color: #cbd5e1; }
+    .pub-note a { color: #bfdbfe; }
+
+    .footer {
+      padding: 34px 0;
+      border-top: 1px solid rgba(148, 163, 184, 0.28);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .footer-grid { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+    @media (max-width: 900px) {
+      .hero-grid, .grid-2, .grid-3, .grid-4, .link-grid { grid-template-columns: 1fr; }
+      .nav { align-items: flex-start; padding: 1rem 0; flex-direction: column; }
+      .nav-links { flex-wrap: wrap; gap: 0.75rem 1rem; }
+      .hero { padding-top: 58px; }
+      .footer-grid { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <nav class="navbar container" aria-label="Primary navigation">
-      <a class="brand" href="index.html" aria-label="Home">
-        <img src="assets/img/logo.svg" alt="RPGI Lab logo" />
-        <span>Dheeraj Bharti <small>RPGI Lab</small></span>
+  <header class="topbar">
+    <nav class="nav container" aria-label="Primary navigation">
+      <a class="brand" href="#home" aria-label="Home">
+        <span class="brand-mark">VB</span>
+        <span>Dr. Dheeraj Bharti <small>ViRoSense Lab</small></span>
       </a>
-      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
       <div class="nav-links">
-        <a href="research.html">Research</a>
-        <a href="projects.html">Projects</a>
-        <a href="publications.html">Publications</a>
-        <a href="teaching.html">Teaching</a>
-        <a href="students.html">Students</a>
-        <a href="contact.html">Contact</a>
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#projects">Projects</a>
+        <a href="#publications">Publications</a>
+        <a href="#students">Students</a>
+        <a href="#contact">Contact</a>
       </div>
     </nav>
   </header>
 
-  <main id="main">
+  <main id="home">
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="eyebrow">Robotic Perception · SLAM · Sensor Fusion · Geospatial AI</div>
-          <h1>Robust 3D perception for field robotics.</h1>
-          <p class="lead">I develop deployable computer vision, SLAM, sensor-fusion, and embedded AI systems for real-world environments such as orchards, mines, roads, farms, and industrial sites.</p>
-          <div class="hero-actions">
-            <a class="button primary" href="research.html">Explore research</a>
-            <a class="button secondary" href="students.html">Open student projects</a>
-            <a class="button secondary" href="publications.html">Publications</a>
-          </div>
-          <div class="stat-strip" aria-label="Research focus summary">
-            <div class="stat"><strong>3D SLAM</strong><span>Metric mapping, Pose3, factor graphs</span></div>
-            <div class="stat"><strong>GNSS-VIO</strong><span>Georeferenced localization and fusion</span></div>
-            <div class="stat"><strong>Edge AI</strong><span>Jetson, stereo, real-time deployment</span></div>
+          <div class="eyebrow">Computer Vision · Robotics · SLAM · Sensor Fusion</div>
+          <h1>Building visual intelligence for real-world robotic systems.</h1>
+          <p class="lead">I work on computer vision, robotic perception, SLAM, 3D reconstruction, GNSS/IMU/camera sensor fusion, and embedded AI for field environments such as orchards, farms, mines, roads, and industrial sites.</p>
+          <div class="actions">
+            <a class="button primary" href="mailto:dheeraj.nitb@gmail.com">Email me</a>
+            <a class="button secondary" href="https://scholar.google.com/citations?user=OvjT6EsAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+            <a class="button secondary" href="https://orcid.org/0000-0002-0726-1364" target="_blank" rel="noopener noreferrer">ORCID</a>
+            <a class="button secondary" href="https://www.linkedin.com/in/dheeraj-bharti-14236319a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </div>
         </div>
-        <aside class="hero-card" aria-label="Research highlights">
-          <div class="hero-visual"><img src="assets/img/hero-pattern.svg" alt="Abstract field robotics trajectory and map visualization" /></div>
-          <div class="card-note">
-            <div class="note-row"><span class="dot"></span><div><b>Current direction</b><span>Georeferenced orchard-scale 3D reconstruction using stereo vision, GNSS, SLAM, semantic landmarks, and AI-based perception.</span></div></div>
-            <div class="note-row"><span class="dot"></span><div><b>Future expansion</b><span>Agriculture, mining, infrastructure inspection, terrain mapping, and autonomous field systems.</span></div></div>
-          </div>
+
+        <aside class="profile-card">
+          <div class="profile-photo" aria-label="Initials DB">DB</div>
+          <h2>Dr. Dheeraj Bharti</h2>
+          <p><strong>Assistant Professor</strong><br />Department of Electronics Engineering<br />IIT (ISM) Dhanbad</p>
+          <ul>
+            <li><strong>Postdoctoral work:</strong> Embrapa Digital Agriculture, Brazil</li>
+            <li><strong>PhD:</strong> IIT Kanpur</li>
+            <li><strong>Core areas:</strong> Computer Vision, Robotics, SLAM, Deep Learning</li>
+          </ul>
         </aside>
       </div>
     </section>
 
-    <section class="section compact">
-      <div class="container section-head">
-        <div class="kicker">Research identity</div>
-        <h2>Robotic Perception and Georeferenced Intelligence Lab</h2>
-        <p class="lead">The lab vision is to build intelligent sensing systems that combine electronics, signal processing, computer vision, SLAM, GNSS/IMU/camera fusion, and embedded AI for outdoor robotic deployment.</p>
-      </div>
-      <div class="container grid-4">
-        <article class="card">
-          <div class="icon">01</div>
-          <h3>Georeferenced SLAM</h3>
-          <p>Metric-scale 3D mapping with camera trajectories anchored by GNSS priors, factor graphs, and robust optimization.</p>
-        </article>
-        <article class="card">
-          <div class="icon">02</div>
-          <h3>Field robotics</h3>
-          <p>Perception systems for orchards, mines, roads, farms, infrastructure corridors, and industrial inspection sites.</p>
-        </article>
-        <article class="card">
-          <div class="icon">03</div>
-          <h3>Semantic landmarks</h3>
-          <p>Using stable objects such as apples, trunks, poles, terrain structures, and assets as constraints for robust mapping.</p>
-        </article>
-        <article class="card">
-          <div class="icon">04</div>
-          <h3>Embedded AI</h3>
-          <p>Real-time deployment on edge hardware using stereo cameras, Jetson platforms, GNSS receivers, IMUs, and efficient models.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container section-head">
-        <div class="kicker">Featured projects</div>
-        <h2>Systems that connect theory, code, sensors, and deployment.</h2>
-      </div>
-      <div class="container grid-3">
-        <article class="card project-card">
-          <img src="assets/img/project-placeholder.svg" alt="Project placeholder showing field robotics trajectory" />
-          <div class="project-body">
-            <h3>Orchard-scale 3D reconstruction</h3>
-            <p>Georeferenced 3D reconstruction and apple localization for yield estimation using stereo vision, GNSS, and AI.</p>
-            <div class="tags"><span class="tag">Agriculture AI</span><span class="tag">3D mapping</span><span class="tag">Yield estimation</span></div>
-          </div>
-        </article>
-        <article class="card project-card">
-          <img src="assets/img/project-placeholder.svg" alt="Project placeholder showing SLAM and GNSS" />
-          <div class="project-body">
-            <h3>VGGT-SLAM with Pose3 + GNSS</h3>
-            <p>Metric SLAM backend with stereo-derived scale, Pose3 optimization, GNSS priors, and factor-graph refinement.</p>
-            <div class="tags"><span class="tag">SLAM</span><span class="tag">GTSAM</span><span class="tag">GNSS fusion</span></div>
-          </div>
-        </article>
-        <article class="card project-card">
-          <img src="assets/img/project-placeholder.svg" alt="Project placeholder showing mining and industrial inspection" />
-          <div class="project-body">
-            <h3>Robotic perception for mining</h3>
-            <p>Adapting field perception methods to mine roads, tunnels, worker safety, digital twins, and autonomous inspection.</p>
-            <div class="tags"><span class="tag">Mining robotics</span><span class="tag">Safety</span><span class="tag">Digital twins</span></div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section compact">
-      <div class="container callout">
-        <div class="grid-2">
-          <div>
-            <div class="kicker">Students and collaborators</div>
-            <h2>Interested in building real perception systems?</h2>
-          </div>
-          <div>
-            <p>I am looking for motivated B.Tech, M.Tech, and PhD students interested in computer vision, robotics, SLAM, sensor fusion, embedded AI, and field deployment.</p>
-            <a class="button primary" href="students.html">See open topics</a>
+    <section id="about">
+      <div class="container grid-2">
+        <div class="section-head">
+          <div class="eyebrow">About</div>
+          <h2>Vision and Robotics for Intelligent Sensing.</h2>
+          <p class="lead">My research goal is to develop deployable perception systems that combine algorithms, sensors, hardware, and field data.</p>
+        </div>
+        <div class="card highlight">
+          <h3>Research identity</h3>
+          <p>I focus on the intersection of computer vision, robotics, 3D perception, sensor fusion, and embedded systems. My current work connects orchard-scale reconstruction and yield estimation with broader field robotics problems in agriculture, mining, infrastructure inspection, and autonomous sensing.</p>
+          <div class="chips">
+            <span class="chip">Computer Vision</span>
+            <span class="chip">Robotic Perception</span>
+            <span class="chip">SLAM</span>
+            <span class="chip">Sensor Fusion</span>
+            <span class="chip">Embedded AI</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section compact">
+    <section id="research">
       <div class="container section-head">
-        <div class="kicker">News</div>
-        <h2>Updates</h2>
+        <div class="eyebrow">Research</div>
+        <h2>Research themes</h2>
+        <p class="lead">A focused research program around deployable visual intelligence for unstructured outdoor environments.</p>
       </div>
-      <div class="container timeline">
-        <div class="timeline-item"><time>2026</time><div><h3>Building the RPGI Lab identity</h3><p>Preparing a focused research direction around robotic perception, georeferenced SLAM, embedded AI, agriculture robotics, and mining inspection.</p></div></div>
-        <div class="timeline-item"><time>Current</time><div><h3>Orchard mapping and yield estimation</h3><p>Developing SLAM and sensor-fusion pipelines for apple orchard reconstruction using stereo vision, GNSS, semantic landmarks, and factor-graph optimization.</p></div></div>
+      <div class="container grid-4">
+        <article class="card">
+          <h3>Computer Vision and Robotic Perception</h3>
+          <p>Detection, segmentation, depth estimation, geometric vision, visual odometry, and perception pipelines for robots operating outside controlled laboratory settings.</p>
+        </article>
+        <article class="card">
+          <h3>SLAM and 3D Reconstruction</h3>
+          <p>Metric-scale mapping, camera trajectory estimation, factor-graph optimization, stereo vision, semantic landmarks, and large-scale 3D reconstruction.</p>
+        </article>
+        <article class="card">
+          <h3>GNSS/IMU/Camera Sensor Fusion</h3>
+          <p>Georeferenced localization and mapping using GNSS, visual information, inertial data, filtering, optimization, and field trajectory evaluation.</p>
+        </article>
+        <article class="card">
+          <h3>Embedded AI and Field Deployment</h3>
+          <p>Hardware-aware perception on edge devices, including Jetson-class platforms, sensor interfaces, real-time constraints, latency, and robustness.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container section-head">
+        <div class="eyebrow">Projects</div>
+        <h2>Current and emerging directions</h2>
+      </div>
+      <div class="container grid-3">
+        <article class="card highlight">
+          <h3>Orchard-scale 3D reconstruction</h3>
+          <p>Georeferenced reconstruction of orchard environments using cameras, GNSS, SLAM, semantic landmarks, and AI-based perception for yield-estimation workflows.</p>
+        </article>
+        <article class="card">
+          <h3>Field robotics for agriculture and mining</h3>
+          <p>Translating visual perception and robotic mapping methods across orchards, farms, mine roads, tunnels, infrastructure sites, and industrial inspection environments.</p>
+        </article>
+        <article class="card">
+          <h3>Edge perception systems</h3>
+          <p>Deployable sensing systems using stereo cameras, embedded AI, GNSS, IMU, and real-time software for outdoor robotic applications.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="publications">
+      <div class="container grid-2">
+        <div>
+          <div class="eyebrow">Publications</div>
+          <h2>Publication record</h2>
+          <p class="lead">For the most current and verified publication list, please use my ORCID and Google Scholar profiles.</p>
+        </div>
+        <div class="pub-note">
+          <div>
+            <h3>Profiles</h3>
+            <p><a href="https://orcid.org/0000-0002-0726-1364" target="_blank" rel="noopener noreferrer">ORCID: 0000-0002-0726-1364</a></p>
+            <p><a href="https://scholar.google.com/citations?user=OvjT6EsAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar profile</a></p>
+            <p>I keep this website intentionally concise; ORCID and Google Scholar should remain the authoritative sources for papers, citations, and bibliographic records.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="students">
+      <div class="container grid-2">
+        <article class="card highlight">
+          <div class="eyebrow">Teaching and students</div>
+          <h2>Open to motivated students</h2>
+          <p>I am interested in working with B.Tech, M.Tech, and PhD students who want to build systems in computer vision, robotics, SLAM, sensor fusion, embedded AI, and real-world field deployment.</p>
+          <p>Good starting topics include stereo visual SLAM, GNSS-aided mapping, 3D reconstruction baselines, semantic landmark detection, Jetson deployment, and field robotics for agriculture and mining.</p>
+        </article>
+        <article class="card">
+          <h3>Teaching interests</h3>
+          <ul class="list">
+            <li>Digital Image Processing</li>
+            <li>Computer Vision and Robotic Perception</li>
+            <li>Digital Signal Processing</li>
+            <li>Machine Learning and Artificial Intelligence</li>
+            <li>Sensor Fusion for Autonomous Systems</li>
+            <li>Embedded AI and Edge Computing</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container section-head">
+        <div class="eyebrow">Contact</div>
+        <h2>Academic and professional links</h2>
+        <p class="lead">For collaboration, student projects, and research discussions, please email me with a specific subject and a short technical context.</p>
+      </div>
+      <div class="container link-grid">
+        <a class="link-card" href="mailto:dheeraj.nitb@gmail.com"><strong>Email</strong><span>dheeraj.nitb@gmail.com</span></a>
+        <a class="link-card" href="https://scholar.google.com/citations?user=OvjT6EsAAAAJ&hl=en" target="_blank" rel="noopener noreferrer"><strong>Google Scholar</strong><span>Publications and citations</span></a>
+        <a class="link-card" href="https://orcid.org/0000-0002-0726-1364" target="_blank" rel="noopener noreferrer"><strong>ORCID</strong><span>0000-0002-0726-1364</span></a>
+        <a class="link-card" href="https://www.linkedin.com/in/dheeraj-bharti-14236319a/" target="_blank" rel="noopener noreferrer"><strong>LinkedIn</strong><span>Professional profile</span></a>
+        <a class="link-card" href="https://github.com/dheerajbharti" target="_blank" rel="noopener noreferrer"><strong>GitHub</strong><span>Code and projects</span></a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="container footer-grid">
-      <p>© <span data-year></span> Dr. Dheeraj Bharti. Robotic Perception and Georeferenced Intelligence Lab.</p>
+      <div>© <span id="year"></span> Dr. Dheeraj Bharti · ViRoSense Lab</div>
       <div class="footer-links">
         <a href="mailto:dheeraj.nitb@gmail.com">Email</a>
-        <a href="https://github.com/dheerajbharti" target="_blank" rel="noopener">GitHub</a>
-        <a href="contact.html">Contact</a>
+        <a href="https://scholar.google.com/citations?user=OvjT6EsAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+        <a href="https://orcid.org/0000-0002-0726-1364" target="_blank" rel="noopener noreferrer">ORCID</a>
+        <a href="https://github.com/dheerajbharti" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
     </div>
   </footer>
-  <script src="assets/js/main.js"></script>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
